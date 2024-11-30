@@ -10,13 +10,23 @@ services:
       - "dtc_postgres_data_local:/var/lib/postgresql/data:rw"
     ports:
       - "5432:5432"
+    networks:
+      - pg-network
   pgadmin:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
       - PGADMIN_DEFAULT_PASSWORD=root
+    volumes:
+      - "pgadmin_settings:/var/lib/pgadmin:rw"
     ports:
       - "8080:80"
+    networks:
+      - pg-network
 volumes:
   dtc_postgres_data_local:
+    external: true
+  pgadmin_settings:
+networks:
+  pg-network:
     external: true
