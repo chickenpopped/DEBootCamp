@@ -6,4 +6,6 @@ RUN pip install pandas sqlalchemy psycopg2
 WORKDIR /app
 COPY ingest_data.py ingest_data.py
 
-ENTRYPOINT [ "python", "ingest_data.py" ]
+ENTRYPOINT [ "python","ingest_data.py" ]
+
+CMD ["--user","root", "--password","root","--host","pgdatabase","--port","5432","--db","ny_taxi","--data_table","yellow_taxi_data","--zone_table","zones","--data_url","https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz","--zone_url","https://github.com/DataTalksClub/nyc-tlc-data/releases/download/misc/taxi_zone_lookup.csv"]

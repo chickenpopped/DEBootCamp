@@ -23,6 +23,7 @@ services:
       - "8080:80"
     networks:
       - pg-network
+
 volumes:
   dtc_postgres_data_local:
     external: true
